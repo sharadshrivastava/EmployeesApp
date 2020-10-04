@@ -47,7 +47,7 @@
                 android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
                 app:clickListener="@{vm.clickListener}"
                 app:itemLayout="@{vm.layoutIds}"
-                app:items="@{vm.feeds.data.items}"
+                app:items="@{vm.employees.data.employees}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -2,7 +2,7 @@ package com.test.app
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.test.app.data.AppRepositoryImpl
-import com.test.app.data.network.ToDoApi
+import com.test.app.data.network.EmployeesApi
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Rule
@@ -21,7 +21,7 @@ abstract class BaseTest {
         .baseUrl(mockWebServer.url("").toString())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(ToDoApi::class.java)
+        .create(EmployeesApi::class.java)
 
     var repository =  AppRepositoryImpl(api)
 

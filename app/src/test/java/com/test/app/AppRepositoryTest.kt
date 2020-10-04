@@ -15,7 +15,7 @@ class AppRepositoryTest : BaseTest() {
         setResponse("response.json")
         runBlocking {
             Assert.assertTrue(
-                repository.newsFeeds().status == Resource.Status.SUCCESS
+                repository.employees().status == Resource.Status.SUCCESS
             )
         }
     }
@@ -25,7 +25,7 @@ class AppRepositoryTest : BaseTest() {
         setErrorResponse()
         runBlocking {
             Assert.assertTrue(
-                repository.newsFeeds().status != Resource.Status.SUCCESS
+                repository.employees().status != Resource.Status.SUCCESS
             )
         }
     }
@@ -36,7 +36,7 @@ class AppRepositoryTest : BaseTest() {
         runBlocking {
             val expectedItems = 10 //in local json file, we have 10 news items.
             Assert.assertTrue(
-                repository.newsFeeds().data?.items?.size == expectedItems
+                repository.employees().data?.items?.size == expectedItems
             )
         }
     }

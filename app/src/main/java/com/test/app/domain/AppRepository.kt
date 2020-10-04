@@ -5,5 +5,5 @@ import com.test.app.domain.model.ApiResponse
 
 interface AppRepository {
 
-    suspend fun newsFeeds(): Resource<ApiResponse?>
+    suspend fun employees(): Resource<ApiResponse?>
 }

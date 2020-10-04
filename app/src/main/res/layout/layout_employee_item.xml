@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.test.app.domain.model.Item" />
+            type="com.test.app.domain.model.Employee" />
 
         <import type="android.view.View" />
     </data>
@@ -20,43 +20,45 @@
         android:maxHeight="@dimen/row_height">
 
         <ImageView
-            android:id="@+id/newsImage"
+            android:id="@+id/EmployeeImage"
             android:layout_width="@dimen/thumbnail_img_width"
             android:layout_height="wrap_content"
             android:contentDescription="@string/description"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="fitStart"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:downloadUrl='@{item.thumbnail}'
+            app:downloadUrl='@{item.photo_url_small}'
             tools:src="@drawable/sample" />
 
         <TextView
-            android:id="@+id/newsTitle"
-            style="@style/BlackStyle.TitleStyle"
+            android:id="@+id/EmployeeName"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/std_margin"
-            android:layout_marginBottom="@dimen/std_margin"
-            android:maxLines="3"
+            android:maxLines="2"
             android:ellipsize="end"
-            android:text='@{item.title}'
-            android:layout_marginEnd="@dimen/std_tiny_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/newsImage"
+            android:text='@{item.full_name}'
+            style="@style/BlackStyle.TitleStyle"
+            android:layout_marginStart="@dimen/std_margin"
+            app:layout_constraintStart_toEndOf="@id/EmployeeImage"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/newsTime"
             tools:text="Paramount Film Studio to layoff 5% of its people. Paramount Film Studio to layoff 5% of its people. Paramount Film Studio to layoff 5% of its peoples." />
 
         <TextView
-            android:id="@+id/newsTime"
-            android:layout_width="wrap_content"
+            android:id="@+id/EmployeeTeam"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="@dimen/std_short_margin"
-            app:formattedDate='@{item.pubDate}'
-            tools:text="Mar 31,2014 12:37 AM" />
+            android:text='@{item.team}'
+            style="@style/BlackStyle"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="@id/EmployeeName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EmployeeName"
+            android:layout_marginTop="@dimen/std_tiny_margin"
+            tools:text="Paramount Film Studio to layoff 5% of its people. Paramount Film Studio to layoff 5% of its people. Paramount Film Studio to layoff 5% of its peoples." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

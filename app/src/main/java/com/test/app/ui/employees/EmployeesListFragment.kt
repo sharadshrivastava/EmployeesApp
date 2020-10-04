@@ -35,10 +35,10 @@ class EmployeesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupDivider()
-        observeFeeds()
+        observeEmployees()
         handleItemClick()
         refresh.setOnRefreshListener {
-            observeFeeds()
+            observeEmployees()
         }
     }
 
@@ -49,8 +49,8 @@ class EmployeesListFragment : Fragment() {
         newsList.addItemDecoration(itemDecorator)
     }
 
-    private fun observeFeeds() {
-        vm.feeds.observe(viewLifecycleOwner) {
+    private fun observeEmployees() {
+        vm.employees.observe(viewLifecycleOwner) {
             when (it.status) {
                 LOADING -> binding.isLoading = true
                 SUCCESS -> handleResponse()

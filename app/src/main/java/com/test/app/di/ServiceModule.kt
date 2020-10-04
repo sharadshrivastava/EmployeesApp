@@ -1,7 +1,7 @@
 package com.test.app.di
 
-import com.test.app.data.network.ToDoApi
-import com.test.app.data.network.ToDoApi.Companion.BASE_URL
+import com.test.app.data.network.EmployeesApi
+import com.test.app.data.network.EmployeesApi.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,11 +14,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ServiceModule {
 
     @Provides
-    fun provideUserApi(): ToDoApi {
+    fun provideUserApi(): EmployeesApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ToDoApi::class.java)
+            .create(EmployeesApi::class.java)
     }
 }
