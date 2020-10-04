@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.test.app.domain.model.Item" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/std_margin"
+        android:minHeight="@dimen/row_height"
+        android:maxHeight="@dimen/row_height">
+
+        <ImageView
+            android:id="@+id/newsImage"
+            android:layout_width="@dimen/thumbnail_img_width"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:downloadUrl='@{item.thumbnail}'
+            tools:src="@drawable/sample" />
+
+        <TextView
+            android:id="@+id/newsTitle"
+            style="@style/BlackStyle.TitleStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/std_margin"
+            android:layout_marginBottom="@dimen/std_margin"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text='@{item.title}'
+            android:layout_marginEnd="@dimen/std_tiny_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/newsImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/newsTime"
+            tools:text="Paramount Film Studio to layoff 5% of its people. Paramount Film Studio to layoff 5% of its people. Paramount Film Studio to layoff 5% of its peoples." />
+
+        <TextView
+            android:id="@+id/newsTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/std_short_margin"
+            app:formattedDate='@{item.pubDate}'
+            tools:text="Mar 31,2014 12:37 AM" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
