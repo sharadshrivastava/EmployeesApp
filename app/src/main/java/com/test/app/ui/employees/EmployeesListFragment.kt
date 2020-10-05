@@ -1,6 +1,7 @@
 package com.test.app.ui.employees
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_list.*
 @AndroidEntryPoint
 class EmployeesListFragment : Fragment() {
 
-    private val vm: EmployeesListViewModel by viewModels()
+    private val employeesListViewModel: EmployeesListViewModel by viewModels()
     private lateinit var binding: FragmentListBinding
 
     override fun onCreateView(
@@ -29,7 +30,7 @@ class EmployeesListFragment : Fragment() {
         return FragmentListBinding.inflate(inflater, container, false).apply {
             binding = this
             lifecycleOwner = this@EmployeesListFragment
-            vm = this@EmployeesListFragment.vm
+            vm = this@EmployeesListFragment.employeesListViewModel
         }.root
     }
 
@@ -50,7 +51,7 @@ class EmployeesListFragment : Fragment() {
     }
 
     private fun observeEmployees() {
-        vm.employees.observe(viewLifecycleOwner) {
+        employeesListViewModel.employees.observe(viewLifecycleOwner) {
             when (it.status) {
                 LOADING -> binding.isLoading = true
                 SUCCESS -> handleResponse()
@@ -66,8 +67,9 @@ class EmployeesListFragment : Fragment() {
     }
 
     private fun handleItemClick() {
-        vm.clickListener.observe(viewLifecycleOwner) {
+        employeesListViewModel.clickListener.observe(viewLifecycleOwner) {
             //handle click here
+            Log.v("sharad", "clicked")
         }
     }
 }

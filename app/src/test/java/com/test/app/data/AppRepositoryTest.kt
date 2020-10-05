@@ -1,5 +1,6 @@
-package com.test.app
+package com.test.app.data
 
+import com.test.app.BaseTest
 import com.test.app.data.network.Resource
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -31,12 +32,12 @@ class AppRepositoryTest : BaseTest() {
     }
 
     @Test
-    fun testNewsItems() {
+    fun testEmployeeItems() {
         setResponse("response.json")
         runBlocking {
-            val expectedItems = 10 //in local json file, we have 10 news items.
+            val expectedItems = 11 //in local json file, we have 10 employee items.
             Assert.assertTrue(
-                repository.employees().data?.items?.size == expectedItems
+                repository.employees().data?.employees?.size == expectedItems
             )
         }
     }

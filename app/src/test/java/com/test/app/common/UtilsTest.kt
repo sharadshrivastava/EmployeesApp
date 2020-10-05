@@ -1,4 +1,4 @@
-package com.test.app
+package com.test.app.common
 
 import android.content.Context
 import android.content.res.Resources
