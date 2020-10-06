@@ -11,6 +11,4 @@ fun Fragment.showErrorBar(msg: String?) =
     }
 
 fun Fragment.showToast(msg: String?) =
-    view?.let {
-        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
-    }
+    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
