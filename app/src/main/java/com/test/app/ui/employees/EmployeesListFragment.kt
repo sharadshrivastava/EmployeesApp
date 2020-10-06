@@ -14,6 +14,7 @@ import com.test.app.R
 import com.test.app.data.network.Resource.Status.*
 import com.test.app.databinding.FragmentListBinding
 import com.test.app.ui.common.showErrorBar
+import com.test.app.ui.common.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_list.*
 
@@ -64,7 +65,7 @@ class EmployeesListFragment : Fragment() {
 
     private fun handleItemClick() {
         employeesListViewModel.clickListener.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it.full_name, Toast.LENGTH_SHORT).show()
+            showToast(it.full_name)
         }
     }
 }
