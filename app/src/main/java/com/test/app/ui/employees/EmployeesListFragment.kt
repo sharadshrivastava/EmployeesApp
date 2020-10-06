@@ -12,7 +12,6 @@ import com.test.app.R
 import com.test.app.data.network.Resource.Status.*
 import com.test.app.databinding.FragmentListBinding
 import com.test.app.ui.common.showErrorBar
-import com.test.app.ui.common.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_list.*
 
@@ -50,15 +49,25 @@ class EmployeesListFragment : Fragment() {
         employeesListViewModel.employees.observe(viewLifecycleOwner) {
             when (it.status) {
                 LOADING -> binding.isLoading = true
-                SUCCESS -> handleResponse()
+                SUCCESS -> handleResponse(isEmpty = it.data?.employees?.size == 0)
                 ERROR -> handleResponse(false, it.message)
             }
         }
     }
 
-    private fun handleResponse(isSuccess: Boolean = true, msg: String? = null) {
+    private fun handleResponse(
+        isSuccess: Boolean = true,
+        msg: String? = null,
+        isEmpty: Boolean = false
+    ) {
         binding.isLoading = false
-        if (!isSuccess) showErrorBar(msg)
+
+        if (isSuccess) {
+            binding.isEmpty = isEmpty
+        } else {
+            showErrorBar(msg)
+            binding.isEmpty = true
+        }
     }
 
     private fun observeItemClick() {

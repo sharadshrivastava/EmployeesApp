@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="isLoading"
+            type="boolean" />
+
+        <variable
+            name="isEmpty"
             type="boolean" />
 
         <variable
@@ -31,6 +36,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isEmpty ? View.VISIBLE : View.GONE}"
+            android:text="@string/no_data"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text = "No Data"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/employeesList"
             android:layout_width="match_parent"
@@ -39,7 +56,7 @@
             android:layout_marginTop="@dimen/std_margin"
             android:layout_marginEnd="@dimen/std_margin"
             android:background="@android:color/white"
-            android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+            android:visibility="@{(isLoading || isEmpty) ? View.GONE : View.VISIBLE}"
             app:clickListener="@{vm}"
             app:itemLayout="@{@layout/layout_employee_item}"
             app:items="@{vm.employees.data.employees}"
