@@ -9,7 +9,7 @@ import java.net.SocketTimeoutException
 class ResponseHandler {
 
     companion object {
-        fun <T : Any?> handleSuccess(data: T?) = Resource.success(data)
+        fun <T> handleSuccess(data: T) = Resource.success(data)
 
         fun <T : Any?> handleException(e: Exception): Resource<T> {
             return when (e) {
@@ -48,7 +48,7 @@ class Resource<T> private constructor(val status: Status, val data: T?, val mess
     }
 
     companion object {
-        fun <T> success(data: T?) = Resource(Status.SUCCESS, data, null)
+        fun <T> success(data: T) = Resource(Status.SUCCESS, data, null)
 
         fun <T> error(msg: String, data: T?) = Resource(Status.ERROR, data, msg)
 

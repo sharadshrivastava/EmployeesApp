@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.test.app.R
 import com.test.app.data.network.Resource.Status.*
@@ -38,14 +36,14 @@ class EmployeesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupDivider()
         observeEmployees()
-        handleItemClick()
+        observeItemClick()
     }
 
     private fun setupDivider() {
         val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         ContextCompat.getDrawable(requireContext(), R.drawable.divider)
             ?.let { itemDecorator.setDrawable(it) }
-        newsList.addItemDecoration(itemDecorator)
+        employeesList.addItemDecoration(itemDecorator)
     }
 
     private fun observeEmployees() {
@@ -63,9 +61,9 @@ class EmployeesListFragment : Fragment() {
         if (!isSuccess) showErrorBar(msg)
     }
 
-    private fun handleItemClick() {
+    private fun observeItemClick() {
         employeesListViewModel.clickListener.observe(viewLifecycleOwner) {
-            showToast(it.full_name)
+            //handle click
         }
     }
 }

@@ -36,7 +36,7 @@ class NewsListFragmentTest {
     @Test
     fun testListVisible() {
         Thread.sleep(2000) //to load data
-        onView(withId(R.id.newsList)).check(matches(isDisplayed()))
+        onView(withId(R.id.employeesList)).check(matches(isDisplayed()))
     }
 
     //In the same way, using espresso we can test other UI components.
