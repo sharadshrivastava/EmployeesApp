@@ -5,5 +5,10 @@ import javax.inject.Inject
 
 class EmployeesUseCase @Inject constructor(private val repository: AppRepositoryImpl) {
 
-    suspend fun employees() = repository.employees()
+    //Sorting logic is added in usecase/domain layer because its a business rule.
+    suspend fun employees() =  repository.employees().apply {
+        data?.employees?.sortBy {
+            it?.full_name
+        }
+    }
 }
