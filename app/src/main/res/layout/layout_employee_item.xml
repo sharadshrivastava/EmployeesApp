@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:downloadUrl='@{item.photo_url_small}'
-            tools:src="@drawable/sample" />
+            tools:src="@drawable/user" />
 
         <TextView
             android:id="@+id/EmployeeName"
