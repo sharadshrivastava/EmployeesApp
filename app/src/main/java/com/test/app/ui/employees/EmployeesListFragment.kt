@@ -1,10 +1,10 @@
 package com.test.app.ui.employees
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -38,9 +38,6 @@ class EmployeesListFragment : Fragment() {
         setupDivider()
         observeEmployees()
         handleItemClick()
-        refresh.setOnRefreshListener {
-            observeEmployees()
-        }
     }
 
     private fun setupDivider() {
@@ -62,13 +59,12 @@ class EmployeesListFragment : Fragment() {
 
     private fun handleResponse(isSuccess: Boolean = true, msg: String? = null) {
         binding.isLoading = false
-        if (refresh.isRefreshing) refresh.isRefreshing = false
         if (!isSuccess) showErrorBar(msg)
     }
 
     private fun handleItemClick() {
         employeesListViewModel.clickListener.observe(viewLifecycleOwner) {
-            //handle click here
+            Toast.makeText(requireContext(), it.full_name, Toast.LENGTH_SHORT).show()
         }
     }
 }

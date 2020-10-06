@@ -15,43 +15,36 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refresh"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorGrayBg">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/main"
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newsList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorGrayBg">
-
-            <ProgressBar
-                android:id="@+id/loading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/newsList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/std_margin"
-                android:layout_marginTop="@dimen/std_margin"
-                android:layout_marginEnd="@dimen/std_margin"
-                android:background="@android:color/white"
-                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
-                app:clickListener="@{vm}"
-                app:itemLayout="@{@layout/layout_employee_item}"
-                app:items="@{vm.employees.data.employees}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_marginStart="@dimen/std_margin"
+            android:layout_marginTop="@dimen/std_margin"
+            android:layout_marginEnd="@dimen/std_margin"
+            android:background="@android:color/white"
+            android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+            app:clickListener="@{vm}"
+            app:itemLayout="@{@layout/layout_employee_item}"
+            app:items="@{vm.employees.data.employees}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
