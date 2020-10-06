@@ -2,7 +2,6 @@ package com.test.app.ui.common
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -14,7 +13,7 @@ fun <T> configureRecyclerView(
     recyclerView: RecyclerView,
     items: List<Any>?,
     layoutId: Int,
-    clickListener: MutableLiveData<out Any>?
+    clickListener: ItemClickListener
 ) {
     if (recyclerView.adapter == null) {
         recyclerView.adapter = GenericRecyclerViewAdapter(items, layoutId, clickListener)

@@ -69,7 +69,6 @@ class EmployeesListFragment : Fragment() {
     private fun handleItemClick() {
         employeesListViewModel.clickListener.observe(viewLifecycleOwner) {
             //handle click here
-            Log.v("sharad", "clicked")
         }
     }
 }

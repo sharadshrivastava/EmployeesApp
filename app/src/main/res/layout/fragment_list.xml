@@ -45,7 +45,7 @@
                 android:layout_marginEnd="@dimen/std_margin"
                 android:background="@android:color/white"
                 android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
-                app:clickListener="@{vm.clickListener}"
+                app:clickListener="@{vm}"
                 app:itemLayout="@{@layout/layout_employee_item}"
                 app:items="@{vm.employees.data.employees}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

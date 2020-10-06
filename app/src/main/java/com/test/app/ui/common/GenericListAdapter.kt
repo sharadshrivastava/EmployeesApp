@@ -4,16 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.test.app.BR
 
 class GenericRecyclerViewAdapter(
     var list: List<Any>?,
     private val layoutId: Int,
-    private val clickListener: MutableLiveData<out Any>?
+    private val clickListener: ItemClickListener
 ) : RecyclerView.Adapter<GenericRecyclerViewAdapter.GenericViewHolder<Any>>() {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenericViewHolder<Any> {
         val inflater = LayoutInflater.from(parent.context)
@@ -35,14 +33,18 @@ class GenericRecyclerViewAdapter(
     }
 
     class GenericViewHolder<T>(
-        private val binding: ViewDataBinding, private val clickListener: MutableLiveData<out Any>?
+        private val binding: ViewDataBinding, private val clickListener: ItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: T?) {
             binding.setVariable(BR.item, item)
             itemView.setOnClickListener {
-                clickListener?.value = item
+                clickListener.onItemClick(item)
             }
         }
     }
+}
+
+interface ItemClickListener {
+    fun onItemClick(item: Any?)
 }
