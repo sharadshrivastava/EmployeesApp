@@ -26,7 +26,7 @@ class AppRepositoryTest : BaseTest() {
         setErrorResponse()
         runBlocking {
             Assert.assertTrue(
-                repository.employees().status != Resource.Status.SUCCESS
+                repository.employees().status == Resource.Status.ERROR
             )
         }
     }
@@ -35,12 +35,12 @@ class AppRepositoryTest : BaseTest() {
     fun testEmployeeItems() {
         setResponse("response.json")
         runBlocking {
-            val expectedItems = 11 //in local json file, we have 10 employee items.
+            val expectedItems = 11 //in local json file, we have 11 employee items.
             Assert.assertTrue(
                 repository.employees().data?.employees?.size == expectedItems
             )
         }
     }
 
-    //In this way we can test other functionality as well using mock webserver and dummy response.
+    //In this way we can test other functionality as well, using mock webserver and dummy responses.
 }
