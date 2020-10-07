@@ -1,7 +1,7 @@
 package com.test.app.data.network
 
-import com.test.app.R
 import com.test.app.EmployeeApp
+import com.test.app.R
 import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException

@@ -5,7 +5,7 @@ import android.content.res.Resources
 import android.util.DisplayMetrics
 import com.test.app.ui.common.dpFromPx
 import com.test.app.ui.common.pxFromDp
-
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -14,15 +14,15 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
-import org.junit.Assert.assertTrue
-
 @RunWith(MockitoJUnitRunner::class)
 class UtilsTest {
 
     @Mock
     var context: Context? = null
+
     @Mock
     var resources: Resources? = null
+
     @Mock
     var displayMetrics: DisplayMetrics? = null
 

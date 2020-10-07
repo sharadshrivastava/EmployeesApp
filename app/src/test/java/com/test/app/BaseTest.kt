@@ -1,17 +1,14 @@
 package com.test.app
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.google.gson.Gson
 import com.test.app.data.AppRepositoryImpl
 import com.test.app.data.network.EmployeesApi
-import com.test.app.domain.model.ApiResponse
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Rule
 import org.junit.rules.TestRule
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.InputStreamReader
 
 abstract class BaseTest {
 
