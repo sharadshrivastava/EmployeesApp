@@ -12,8 +12,7 @@ import com.test.app.domain.usecases.EmployeesUseCase
 import com.test.app.ui.common.ItemClickListener
 
 class EmployeesListViewModel @ViewModelInject constructor(
-    private val useCase: EmployeesUseCase,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val useCase: EmployeesUseCase
 ) : ViewModel(), ItemClickListener {
 
     var clickListener = MutableLiveData<Employee>()
