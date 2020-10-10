@@ -11,16 +11,12 @@ import com.test.app.ui.common.ItemClickListener
 
 class EmployeesListViewModel @ViewModelInject constructor(
     private val useCase: EmployeesUseCase
-) : ViewModel(), ItemClickListener {
+) : ViewModel() {
 
     var clickListener = MutableLiveData<Employee>()
 
     var employees = liveData {
         emit(Resource.loading())
         emit(useCase.employees())
-    }
-
-    override fun onItemClick(item: Any?) {
-        if (item is Employee) clickListener.value = item
     }
 }

@@ -11,12 +11,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.test.app.R
 import com.test.app.data.network.Resource.Status.*
 import com.test.app.databinding.FragmentListBinding
+import com.test.app.domain.model.Employee
+import com.test.app.ui.common.ItemClickListener
 import com.test.app.ui.common.showErrorBar
+import com.test.app.ui.common.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_list.*
 
 @AndroidEntryPoint
-class EmployeesListFragment : Fragment() {
+class EmployeesListFragment : Fragment(), ItemClickListener {
 
     private val employeesListViewModel: EmployeesListViewModel by viewModels()
     private lateinit var binding: FragmentListBinding
@@ -29,13 +32,13 @@ class EmployeesListFragment : Fragment() {
             binding = this
             lifecycleOwner = this@EmployeesListFragment
             vm = this@EmployeesListFragment.employeesListViewModel
+            clickListener = this@EmployeesListFragment
         }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupDivider()
         observeEmployees()
-        observeItemClick()
     }
 
     private fun setupDivider() {
@@ -70,9 +73,7 @@ class EmployeesListFragment : Fragment() {
         }
     }
 
-    private fun observeItemClick() {
-        employeesListViewModel.clickListener.observe(viewLifecycleOwner) {
-            //handle click
-        }
+    override fun onItemClick(item: Any?) {
+        if (item is Employee) showToast(item.full_name)
     }
 }

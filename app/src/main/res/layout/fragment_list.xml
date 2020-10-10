@@ -17,6 +17,10 @@
             name="vm"
             type="com.test.app.ui.employees.EmployeesListViewModel" />
 
+        <variable
+            name="clickListener"
+            type="com.test.app.ui.common.ItemClickListener" />
+
         <import type="android.view.View" />
     </data>
 
@@ -57,7 +61,7 @@
             android:layout_marginEnd="@dimen/std_margin"
             android:background="@android:color/white"
             android:visibility="@{(isLoading || isEmpty) ? View.GONE : View.VISIBLE}"
-            app:clickListener="@{vm}"
+            app:clickListener="@{clickListener}"
             app:itemLayout="@{@layout/layout_employee_item}"
             app:items="@{vm.employees.data.employees}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
