@@ -13,15 +13,15 @@ class EmployeesListViewModel @ViewModelInject constructor(
 ) : ViewModel() {
 
     private var emitLoading = true
-    private val loadTrigger = MutableLiveData(Unit)
+    private val employeesLiveData = MutableLiveData(Unit)
 
-    var employees = loadTrigger.switchMap {
+    var employees = employeesLiveData.switchMap {
         fetchEmployees()
     }
 
     fun refresh() {
         emitLoading = false
-        loadTrigger.value = Unit
+        employeesLiveData.value = Unit
     }
 
     private fun fetchEmployees() = liveData {
