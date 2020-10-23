@@ -7,6 +7,9 @@ class EmployeesUseCase @Inject constructor(private val repository: AppRepository
 
     //Sorting logic is added in usecase/domain layer because its a business rule.
     suspend fun employees() = repository.employees().apply {
+        data?.employees?.retainAll {
+            it?.isValid() ?: false
+        }
         data?.employees?.sortBy {
             it?.full_name
         }
