@@ -1,5 +1,5 @@
 package com.test.app.domain.model
 
 data class ApiResponse(
-    val employees: MutableList<Employee?>?
+    val employees: MutableList<EmployeeDTO?>?
 )

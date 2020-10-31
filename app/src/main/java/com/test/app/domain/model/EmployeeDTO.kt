@@ -1,6 +1,6 @@
 package com.test.app.domain.model
 
-data class Employee(
+data class EmployeeDTO(
     val biography: String?,
     val email_address: String?,
     val employee_type: String?,
