@@ -12,4 +12,5 @@
     <string name="timeout">Timeout</string>
     <string name="description">description</string>
     <string name="no_data">No Data</string>
+    <string name="malformed">Malformed Data</string>
 </resources>

@@ -10,6 +10,6 @@ interface EmployeesApi {
 
     companion object {
         const val BASE_URL = "https://s3.amazonaws.com/"
-        private const val EMPLOYEES_PATH = "sq-mobile-interview/employees.json" //sq-mobile-interview/employees_malformed.json
+        private const val EMPLOYEES_PATH = "sq-mobile-interview/employees.json"
     }
 }
