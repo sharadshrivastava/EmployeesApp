@@ -10,9 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.test.app.R
+import com.test.app.data.db.entity.Employee
 import com.test.app.data.network.Resource.Status.*
 import com.test.app.databinding.FragmentListBinding
-import com.test.app.domain.model.EmployeeDTO
 import com.test.app.ui.common.ItemClickListener
 import com.test.app.ui.common.showErrorBar
 import com.test.app.ui.common.showToast
@@ -75,8 +75,8 @@ class EmployeesListFragment : Fragment(), ItemClickListener {
     }
 
     override fun onItemClick(item: Any?) {
-        if (item is EmployeeDTO) {
-            showToast(item.full_name)
+        if (item is Employee) {
+            showToast(item.fullName)
             findNavController().navigate(EmployeesListFragmentDirections.listFragmentAction(item))
         }
     }

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="employeeItem"
-            type="com.test.app.domain.model.Employee" />
+            type="com.test.app.data.db.entity.Employee" />
 
         <import type="android.view.View" />
     </data>
@@ -27,14 +27,14 @@
             android:adjustViewBounds="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:downloadUrl='@{employeeItem.photo_url_small}'
+            app:downloadUrl='@{employeeItem.imgUrl}'
             tools:src="@drawable/user" />
 
         <TextView
             android:id="@+id/EmployeeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{employeeItem.full_name}'
+            android:text='@{employeeItem.fullName}'
             style="@style/BlackStyle.TitleStyle"
             android:layout_marginTop="@dimen/std_margin"
             app:layout_constraintStart_toStartOf="parent"
