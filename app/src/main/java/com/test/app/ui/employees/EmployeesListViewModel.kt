@@ -1,14 +1,16 @@
 package com.test.app.ui.employees
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
 import com.test.app.data.network.Resource
 import com.test.app.domain.usecases.EmployeesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class EmployeesListViewModel @ViewModelInject constructor(
+@HiltViewModel
+class EmployeesListViewModel @Inject constructor(
     private val useCase: EmployeesUseCase
 ) : ViewModel() {
 
