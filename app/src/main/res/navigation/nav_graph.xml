@@ -8,6 +8,18 @@
         android:id="@+id/listFragment"
         android:name="com.test.app.ui.employees.EmployeesListFragment"
         android:label="@string/employees">
+        <action
+            android:id="@+id/listFragmentAction"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.test.app.ui.employees.EmployeeDetailsFragment"
+        android:label="@string/employees">
+        <argument
+            android:name="item"
+            app:argType="com.test.app.domain.model.Employee"/>
     </fragment>
 
 </navigation>
