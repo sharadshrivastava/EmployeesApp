@@ -1,5 +1,9 @@
 package com.test.app.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class EmployeeDTO(
     val biography: String?,
     val email_address: String?,
@@ -10,7 +14,7 @@ data class EmployeeDTO(
     val photo_url_small: String?,
     val team: String?,
     val uuid: String?
-) {
+):Parcelable {
     fun isValid() =
         uuid != null && full_name != null && email_address != null
                 && team != null && employee_type != null

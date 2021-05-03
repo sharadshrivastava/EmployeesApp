@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.test.app.R
 import com.test.app.data.network.Resource.Status.*
@@ -74,6 +75,9 @@ class EmployeesListFragment : Fragment(), ItemClickListener {
     }
 
     override fun onItemClick(item: Any?) {
-        if (item is EmployeeDTO) showToast(item.full_name)
+        if (item is EmployeeDTO) {
+            showToast(item.full_name)
+            findNavController().navigate(EmployeesListFragmentDirections.listFragmentAction(item))
+        }
     }
 }
