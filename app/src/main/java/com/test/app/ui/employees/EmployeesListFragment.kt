@@ -39,7 +39,7 @@ class EmployeesListFragment : Fragment(), ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupDivider()
-        observeEmployees()
+        observeRemoteEmployees()
     }
 
     private fun setupDivider() {
@@ -49,8 +49,8 @@ class EmployeesListFragment : Fragment(), ItemClickListener {
         employeesList.addItemDecoration(itemDecorator)
     }
 
-    private fun observeEmployees() {
-        employeesListViewModel.employees.observe(viewLifecycleOwner) {
+    private fun observeRemoteEmployees() {
+        employeesListViewModel.remoteEmployees.observe(viewLifecycleOwner) {
             when (it.status) {
                 LOADING -> binding.isLoading = true
                 SUCCESS -> handleResponse(isEmpty = it.data?.size == 0)

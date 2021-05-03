@@ -1,9 +1,6 @@
 package com.test.app.ui.employees
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
 import com.test.app.data.network.Resource
 import com.test.app.domain.usecases.EmployeesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,19 +12,21 @@ class EmployeesListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var emitLoading = true
-    private val employeesLiveData = MutableLiveData(Unit)
+    private val remoteEmployeesLiveData = MutableLiveData(Unit)
 
-    var employees = employeesLiveData.switchMap {
-        fetchEmployees()
+    var employees = useCase.employees().asLiveData()
+
+    var remoteEmployees = remoteEmployeesLiveData.switchMap {
+        remoteEmployees()
     }
 
     fun refresh() {
         emitLoading = false
-        employeesLiveData.value = Unit
+        remoteEmployeesLiveData.value = Unit
     }
 
-    private fun fetchEmployees() = liveData {
+    private fun remoteEmployees() = liveData {
         if (emitLoading) emit(Resource.loading())
-        emit(useCase.employees())
+        emit(useCase.remoteEmployees())
     }
 }

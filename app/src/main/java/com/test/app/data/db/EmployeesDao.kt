@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface EmployeesDao {
 
     @Query("SELECT * FROM Employee")
-    fun employees(): Flow<MutableList<Employee?>>
+    fun employees(): Flow<List<Employee?>>
 
     @Query("SELECT count(*) FROM Employee")
     suspend fun entryCount(): Int

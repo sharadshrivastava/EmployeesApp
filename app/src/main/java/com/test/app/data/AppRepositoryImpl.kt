@@ -16,27 +16,17 @@ class AppRepositoryImpl @Inject constructor(
     private val dao: EmployeesDao
 ) : AppRepository {
 
-    override suspend fun employees(): Resource<MutableList<Employee?>?> = try {
+    override fun employees() = dao.employees()
 
-        if (dao.entryCount() == 0) {
-            val employeeResponse = api.employees()
-            val list = mutableListOf<Employee?>()
+    override suspend fun remoteEmployees(): Resource<List<Employee?>?> = try {
+        val employeeResponse = api.employees()
+        val list = mutableListOf<Employee?>()
 
-            employeeResponse?.employees?.forEach {
-                val employee = Employee(it?.full_name, it?.photo_url_small, it?.team)
-                list.add(employee)
-            }
-            dao.insertEmployees(list)
-            ResponseHandler.handleSuccess(list)
-        } else {
-            var list: MutableList<Employee?>? = null
-            dao.employees().first {
-                list = it
-                return@first true
-            }
-            ResponseHandler.handleSuccess(list)
+        employeeResponse?.employees?.forEach {
+            list.add(it?.toEmployee())
         }
-
+        dao.insertEmployees(list)
+        ResponseHandler.handleSuccess(list)
     } catch (e: Exception) {
         ResponseHandler.handleException(e)
     }

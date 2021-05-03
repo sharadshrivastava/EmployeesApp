@@ -1,6 +1,7 @@
 package com.test.app.domain.model
 
 import android.os.Parcelable
+import com.test.app.data.db.entity.Employee
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -18,4 +19,6 @@ data class EmployeeDTO(
     fun isValid() =
         uuid != null && full_name != null && email_address != null
                 && team != null && employee_type != null
+
+    fun toEmployee() = Employee(full_name, photo_url_small, team)
 }
