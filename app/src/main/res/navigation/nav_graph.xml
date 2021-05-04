@@ -19,7 +19,7 @@
         android:label="@string/employees">
         <argument
             android:name="item"
-            app:argType="com.test.app.domain.model.Employee"/>
+            app:argType="com.test.app.data.db.entity.Employee"/>
     </fragment>
 
 </navigation>

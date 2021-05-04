@@ -1,9 +1,12 @@
 package com.test.app.domain
 
+import com.test.app.data.db.entity.Employee
 import com.test.app.data.network.Resource
-import com.test.app.domain.model.ApiResponse
+import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
 
-    suspend fun employees(): Resource<ApiResponse?>
+    fun employees(): Flow<List<Employee?>>
+
+    suspend fun remoteEmployees(): Resource<List<Employee?>?>
 }
