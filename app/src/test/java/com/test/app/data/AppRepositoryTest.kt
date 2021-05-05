@@ -16,7 +16,7 @@ class AppRepositoryTest : BaseTest() {
         setResponse("response.json")
         runBlocking {
             Assert.assertTrue(
-                repository.employees().status == Resource.Status.SUCCESS
+                repository.remoteEmployees().status == Resource.Status.SUCCESS
             )
         }
     }
@@ -26,7 +26,7 @@ class AppRepositoryTest : BaseTest() {
         setErrorResponse()
         runBlocking {
             Assert.assertTrue(
-                repository.employees().status == Resource.Status.ERROR
+                repository.remoteEmployees().status == Resource.Status.ERROR
             )
         }
     }
@@ -37,7 +37,7 @@ class AppRepositoryTest : BaseTest() {
         runBlocking {
             val expectedItems = 11 //in local json file, we have 11 employee items.
             Assert.assertTrue(
-                repository.employees().data?.employees?.size == expectedItems
+                repository.remoteEmployees().data?.size == expectedItems
             )
         }
     }

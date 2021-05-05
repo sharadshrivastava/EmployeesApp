@@ -34,7 +34,7 @@ class EmployeesListFragmentTest {
 
     @Before
     fun setup() {
-        Thread.sleep(3000)
+        Thread.sleep(3000) //To load data on list.
     }
 
     @After

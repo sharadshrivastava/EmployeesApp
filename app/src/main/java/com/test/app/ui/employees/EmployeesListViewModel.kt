@@ -13,7 +13,7 @@ class EmployeesListViewModel @Inject constructor(
 
     private val remoteEmployeesLiveData = MutableLiveData(Unit)
 
-    var employees = useCase.employees().asLiveData()
+    var employees = useCase.employees()?.asLiveData()
 
     //using switchMap to avoid observing two live data for refresh functionality in Data-Binding scenarios.
     var remoteEmployees = remoteEmployeesLiveData.switchMap {

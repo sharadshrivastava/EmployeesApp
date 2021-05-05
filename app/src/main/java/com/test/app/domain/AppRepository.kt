@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
 
-    fun employees(): Flow<List<Employee?>>
+    fun employees(): Flow<List<Employee?>>?
 
     suspend fun remoteEmployees(): Resource<List<Employee?>?>
 

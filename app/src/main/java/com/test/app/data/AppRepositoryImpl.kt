@@ -12,12 +12,12 @@ import javax.inject.Singleton
 @Singleton
 class AppRepositoryImpl @Inject constructor(
     private val api: EmployeesApi,
-    private val dao: EmployeesDao
+    private val dao: EmployeesDao?
 ) : AppRepository {
 
-    override fun employees() = dao.employees()
+    override fun employees() = dao?.employees()
 
-    override suspend fun isDBEmpty() = dao.entryCount() == 0
+    override suspend fun isDBEmpty() = dao?.entryCount() == 0
 
     override suspend fun remoteEmployees(): Resource<List<Employee?>?> = try {
         val employeeResponse = api.employees()
@@ -26,7 +26,7 @@ class AppRepositoryImpl @Inject constructor(
         employeeResponse?.employees?.forEach {
             list.add(it?.toEmployee())
         }
-        dao.insertEmployees(list) //Keeping it in list and then saving to DB, to optimize expensive DB operations.
+        dao?.insertEmployees(list) //Keeping it in list and then saving to DB, to optimize expensive DB operations.
         ResponseHandler.handleSuccess(list)
     } catch (e: Exception) {
         ResponseHandler.handleException(e)

@@ -1,9 +1,9 @@
 package com.test.app.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.test.app.common.employees
 import com.test.app.common.readJson
 import com.test.app.data.network.Resource
-import com.test.app.domain.model.ApiResponse
 import com.test.app.domain.usecases.EmployeesUseCase
 import com.test.app.ui.employees.EmployeesListViewModel
 import kotlinx.coroutines.runBlocking
@@ -28,22 +28,24 @@ class EmployeesListViewModelTest {
     private lateinit var employeesUseCase: EmployeesUseCase
 
     private lateinit var employeesViewModel: EmployeesListViewModel
-    private lateinit var apiResponse: ApiResponse
+
+    var employees = employees(readJson("response.json")) //Reading mock json
 
     @Before
     fun setup() {
-        MockitoAnnotations.initMocks(this)
         employeesViewModel = EmployeesListViewModel(employeesUseCase)
-        apiResponse = readJson("response.json")
     }
 
     @Test
     fun testEmployees() {
         runBlocking {
-            Mockito.`when`(employeesUseCase.employees()).thenReturn(Resource.success(apiResponse))
-            employeesViewModel.employees.observeForever {
+            Mockito.`when`(employeesUseCase.remoteEmployees())
+                .thenReturn(Resource.success(employees))
+            Mockito.`when`(employeesUseCase.isDBEmpty()).thenReturn(true)
+
+            employeesViewModel.remoteEmployees.observeForever {
                 if (it.status == Resource.Status.SUCCESS) {
-                    Assert.assertEquals(apiResponse, it.data)
+                    Assert.assertEquals(employees, it.data)
                 }
             }
         }
