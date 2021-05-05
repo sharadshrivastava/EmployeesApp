@@ -9,4 +9,6 @@ interface AppRepository {
     fun employees(): Flow<List<Employee?>>
 
     suspend fun remoteEmployees(): Resource<List<Employee?>?>
+
+    suspend fun isDBEmpty(): Boolean
 }

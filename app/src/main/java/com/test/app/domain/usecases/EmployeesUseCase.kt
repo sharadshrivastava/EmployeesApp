@@ -7,7 +7,10 @@ import javax.inject.Inject
 
 class EmployeesUseCase @Inject constructor(private val repository: AppRepositoryImpl) {
 
+    suspend fun remoteEmployees() = repository.remoteEmployees()
+
     fun employees() = repository.employees()
 
-    suspend fun remoteEmployees() = repository.remoteEmployees()
+    suspend fun isDBEmpty() = repository.isDBEmpty()
+
 }
