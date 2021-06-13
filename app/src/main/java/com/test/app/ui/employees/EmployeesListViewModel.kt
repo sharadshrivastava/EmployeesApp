@@ -28,13 +28,6 @@ class EmployeesListViewModel @Inject constructor(
         viewState.value = ViewState()
     }
 
-    private fun currentViewState() = viewState.value!!
-
-    fun refresh() {
-        emitLoading = false
-        employeesLiveData.value = Unit
-    }
-
     private fun fetchEmployees() = liveData {
         if (emitLoading) emit(Resource.loading())
         emit(useCase.employees())
@@ -60,5 +53,12 @@ class EmployeesListViewModel @Inject constructor(
             viewState.value =
                 currentViewState().copy(loading = false, empty = true, error = true, errorMsg = msg)
         }
+    }
+
+    private fun currentViewState() = viewState.value!!
+
+    fun refresh() {
+        emitLoading = false
+        employeesLiveData.value = Unit
     }
 }
