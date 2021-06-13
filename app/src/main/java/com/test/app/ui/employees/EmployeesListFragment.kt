@@ -40,6 +40,7 @@ class EmployeesListFragment : Fragment(), ItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupDivider()
         observeEmployees()
+        observeViewState()
     }
 
     private fun setupDivider() {
@@ -51,26 +52,17 @@ class EmployeesListFragment : Fragment(), ItemClickListener {
 
     private fun observeEmployees() {
         employeesListViewModel.employees.observe(viewLifecycleOwner) {
-            when (it.status) {
-                LOADING -> binding.isLoading = true
-                SUCCESS -> handleResponse(isEmpty = it.data?.employees?.size == 0)
-                ERROR -> handleResponse(false, it.message)
-            }
+            employeesListViewModel.handleEmployeesResponse(it)
         }
     }
 
-    private fun handleResponse(
-        isSuccess: Boolean = true,
-        msg: String? = null,
-        isEmpty: Boolean = false
-    ) {
-        binding.isLoading = false
-
-        if (isSuccess) {
-            binding.isEmpty = isEmpty
-        } else {
-            showErrorBar(msg)
-            binding.isEmpty = true
+    private fun observeViewState() {
+        employeesListViewModel.viewState.observe(viewLifecycleOwner) {
+            binding.isLoading = it.loading
+            binding.isEmpty = it.empty
+            if (it.error) {
+                showErrorBar(it.errorMsg)
+            }
         }
     }
 
