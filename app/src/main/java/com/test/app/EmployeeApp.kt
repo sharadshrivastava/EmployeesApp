@@ -8,11 +8,10 @@ class EmployeeApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        appContext = this
     }
 
     companion object {
-        private var instance: EmployeeApp? = null
-        fun get(): EmployeeApp? = instance
+        var appContext: EmployeeApp? = null //It can be null in testing environment.
     }
 }

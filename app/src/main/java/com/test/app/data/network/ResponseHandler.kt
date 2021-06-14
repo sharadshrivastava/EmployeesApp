@@ -30,7 +30,7 @@ class ResponseHandler {
             }
         }
 
-        private fun getString(id: Int): String = EmployeeApp.get()?.getString(id) ?: ""
+        private fun getString(id: Int): String = EmployeeApp.appContext?.getString(id) ?: ""
     }
 
     enum class ErrorCodes(val code: Int) {
