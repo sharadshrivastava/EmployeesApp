@@ -24,6 +24,7 @@ class EmployeesListViewModel @Inject constructor(
         remoteEmployeesLiveData.value = Unit
     }
 
+    //For pull to refresh
     private fun remoteEmployees() = liveData {
         if (useCase.isDBEmpty()) emit(Resource.loading())
         emit(useCase.remoteEmployees())
