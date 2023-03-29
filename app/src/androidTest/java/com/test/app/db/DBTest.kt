@@ -34,7 +34,6 @@ class DBTest {
             val list = listOf(Employee("Sharad", "abc.png", "Android"))
             employeesDao.insertEmployees(list)
         }
-
     }
 
 
